@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.PrefersHomeIndicatorAutoHidden="True"             
+             x:Class="SmartBox.MainPage"
+             Title="SmartBox Connection"             
+             BackgroundColor="White"            
+             >
+
+    
+    <Grid IgnoreSafeArea="True" >
+        
+        <VerticalStackLayout Spacing="5"                            
+                             Padding="10" >
+            <Label Text="Please provide password for detected Wi-Fi network"                   
+                   FontSize="Medium"
+                   FontFamily="ArialRegular"
+                   TextColor="Black"/>
+            <Entry Text="{Binding WifiDeviceInfo.Ssid, Mode=TwoWay}"                 
+                   TextColor="Black"
+                   FontFamily="ArialRegular"
+                   IsReadOnly="True"
+                   />
+            <Entry Placeholder="Enter password" 
+                   FontFamily="ArialRegular"
+                   
+                   TextColor="Black"
+                   Text="{Binding WifiDeviceInfo.Password, Mode=TwoWay}"
+                   IsPassword="True"
+                  
+                   
+                   />
+            <Button Text="Confirm"
+                    FontFamily="ArialRegular"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="{StaticResource blueColor}"
+                    TextColor="White"
+                    
+                    Padding="10"                    
+                    Pressed="OnCounterClicked"/>
+        </VerticalStackLayout>
+        <ActivityIndicator  x:Name="indicator"
+                            IsVisible="{Binding IsVisibleIndicator}"
+                            IsRunning="{Binding Source={x:Reference indicator}, Path=IsVisible}"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"/>
+    </Grid>
+
+</ContentPage>
